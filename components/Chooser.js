@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 import Link from 'next/link';
-import s from '@/app/page.module.css';
+import s from '../app/page.module.css';
 
 export default function Chooser() {
   const [pick, setPick] = useState('');

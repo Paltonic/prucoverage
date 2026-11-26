@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import s from './page.module.css';
-import Chooser from '@/components/Chooser';
-import LikoLogo from '@/components/LikoLogo';
+import Chooser from '../components/Chooser';
+import LikoLogo from '../components/LikoLogo';
 
 export default function Home() {
   return (

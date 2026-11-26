@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { waLink } from '@/lib/site';
+import { waLink } from '../lib/site';
 
 /*
   Formulir konsultasi: menyusun pesan lalu membuka WhatsApp agen.

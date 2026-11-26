@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import s from './liv.module.css';
-import Faq from '@/components/Faq';
-import ConsultForm from '@/components/ConsultForm';
-import { LIV, waLink } from '@/lib/site';
+import Faq from '../../components/Faq';
+import ConsultForm from '../../components/ConsultForm';
+import { LIV, waLink } from '../../lib/site';
 
 export const metadata = {
   title: 'LivProtektact — Pelengkap Hidupmu',

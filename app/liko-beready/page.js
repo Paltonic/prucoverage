@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import s from './liko.module.css';
-import LikoLogo from '@/components/LikoLogo';
-import Checklist from '@/components/Checklist';
-import { LIKO, waLink } from '@/lib/site';
+import LikoLogo from '../../components/LikoLogo';
+import Checklist from '../../components/Checklist';
+import { LIKO, waLink } from '../../lib/site';
 
 export const metadata = {
   title: 'Liko.beready — Asuransi tanpa ribet untuk anak muda Medan',

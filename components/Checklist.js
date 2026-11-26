@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import s from '@/app/liko-beready/liko.module.css';
+import s from '../app/liko-beready/liko.module.css';
 
 const ITEMS = [
   ['Tahu tujuanmu', 'mau melindungi apa dan siapa'],
