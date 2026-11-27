@@ -1,6 +1,6 @@
 // Ubah data kontak di satu tempat ini.
 export const LIV = {
-  agentName: '[NAMA AGEN LIVPROTEKTACT]',
+  agentName: 'Felicia Livana',
   license: '[NO. LISENSI AAJI]',
   whatsapp: '6287744943832',
   whatsappLabel: '0877-4494-3832',
@@ -8,7 +8,7 @@ export const LIV = {
 } as const;
 
 export const LIKO = {
-  agentName: '[NAMA LENGKAP AGEN]',
+  agentName: 'Frederick Liko',
   license: '[NO. LISENSI AAJI]',
   whatsapp: '62895611179149',
   whatsappLabel: '0895-6111-79149',
