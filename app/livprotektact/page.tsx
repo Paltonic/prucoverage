@@ -1,10 +1,10 @@
 import type { Metadata, Viewport } from 'next';
 import Link from 'next/link';
-import Image from 'next/image';
 import s from './liv.module.css';
 import Faq, { type FaqItem } from '../../components/Faq';
 import ConsultForm from '../../components/ConsultForm';
 import MobileMenu from '../../components/MobileMenu';
+import LivLogo, { LivSymbol } from '../../components/LivLogo';
 import { LIV, waLink } from '../../lib/site';
 
 export const metadata: Metadata = {
@@ -43,7 +43,7 @@ export default function LivProtektact() {
       <header className={s.header}>
         <div className={s.headerIn}>
           <Link href="#top" aria-label="LivProtektact, kembali ke atas">
-            <Image src="/livprotektact-logo.png" alt="LivProtektact" width={900} height={214} className={s.logo} priority />
+            <span className={s.logo}><LivLogo height={44} /></span>
           </Link>
           <nav className={`${s.nav} dnav`} aria-label="Utama">
             <a href="#arti">Tentang Liv</a>
@@ -89,7 +89,7 @@ export default function LivProtektact() {
               <path d="M340 120c-34-6-56 14-58 48 34 6 58-14 58-48z" fill="#BE95D1" />
               <path d="M80 150c26-2 44 14 44 40-26 2-44-14-44-40z" fill="#CBAADA" />
             </svg>
-            <Image src="/livprotektact-symbol.png" alt="" width={351} height={468} className={s.heroSymbol} />
+            <div className={s.heroSymbol}><LivSymbol size={220} /></div>
           </div>
         </section>
 
@@ -175,7 +175,7 @@ export default function LivProtektact() {
       <footer className={s.footer}>
         <div className={s.footerIn}>
           <div className={s.footerTop}>
-            <div className={s.wordmark}>LIV <span className={s.protek}>PROTEK</span> TACT</div>
+            <LivLogo height={40} variant="light" />
             <div className={s.hashtagLight}>#SaatnyaSadar</div>
           </div>
           <p className={s.small}>
