@@ -1,4 +1,4 @@
-# PruCoverage — Next.js
+# PruCoverage — Next.js (TypeScript)
 
 Kolaborasi dua situs agen: **LivProtektact** (perasa, pelengkap hidup) dan **Liko.beready** (pemikir, pengalih risiko).
 
@@ -18,10 +18,21 @@ npm run build && npm start
 
 Deploy ke Netlify atau Vercel langsung dari repo (Netlify otomatis memakai plugin Next.js).
 
+**Saat mengganti isi repo lama:** hapus dulu semua file lama (terutama `*.js`, `jsconfig.json`, `next.config.mjs`, `package-lock.json`) lalu upload isi zip ini.
+
+## Tampilan HP (Android)
+
+- Header menempel di atas dengan menu hamburger (`components/MobileMenu.tsx`).
+- Tombol tetap di bawah layar untuk WhatsApp/aksi utama, aman untuk area gesture (safe-area).
+- Ukuran huruf, jarak, dan tombol (min. 44–54 px) menyesuaikan layar kecil; tombol hero jadi lebar penuh.
+- Warna address bar Chrome mengikuti brand tiap halaman (`viewport.themeColor`).
+- Bisa "Tambahkan ke layar utama" seperti aplikasi (`app/manifest.ts` + ikon).
+- Input 16 px supaya Android/iOS tidak zoom otomatis saat mengetik.
+
 ## Yang perlu diisi
 
-- `lib/site.js`: nama agen LivProtektact, nomor lisensi AAJI kedua agen, nomor WhatsApp LivProtektact.
-- Foto agen: ganti kotak "Foto agen" di `app/livprotektact/page.js` dan "Foto atau avatar Liko" di `app/liko-beready/page.js`.
+- `lib/site.ts`: nama agen LivProtektact, nomor lisensi AAJI kedua agen, nomor WhatsApp LivProtektact.
+- Foto agen: ganti kotak "Foto agen" di `app/livprotektact/page.tsx` dan "Foto atau avatar Liko" di `app/liko-beready/page.tsx`.
 - Teks bertanda `[SESUAIKAN]` / `[...]`: ganti dengan cerita asli.
 - Logo LivProtektact di `public/` dipotong dari PDF guideline. Ganti dengan file master logo agar lebih tajam.
 
@@ -29,20 +40,16 @@ Deploy ke Netlify atau Vercel langsung dari repo (Netlify otomatis memakai plugi
 
 ```
 app/
-  layout.js             font (next/font/google) + metadata
-  globals.css
-  page.js               PruCoverage
-  page.module.css
-  livprotektact/        page.js + liv.module.css
-  liko-beready/         page.js + liko.module.css
-components/
-  Chooser.js            kuis hati/pikiran (client)
-  Faq.js                FAQ buka-tutup (client)
-  ConsultForm.js        formulir → membuka WhatsApp agen dengan pesan terisi (client)
-  Checklist.js          checklist sebelum beli asuransi (client)
-  LikoLogo.js           logo Liko (SVG)
-lib/site.js             data kontak
-public/                 logo
+  layout.tsx            font (next/font/google), metadata, viewport
+  manifest.ts           PWA manifest
+  icon.png, apple-icon.png
+  globals.css           menu HP + tombol bawah (dipakai semua halaman)
+  page.tsx              PruCoverage
+  livprotektact/        page.tsx + liv.module.css
+  liko-beready/         page.tsx + liko.module.css
+components/             MobileMenu, Chooser, Faq, ConsultForm, Checklist, LikoLogo (.tsx)
+lib/site.ts             data kontak
+public/                 logo & ikon
 ```
 
 Formulir tidak menyimpan data di server; isinya disusun jadi pesan WhatsApp ke nomor agen.

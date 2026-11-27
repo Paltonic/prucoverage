@@ -1,45 +1,68 @@
+import type { Metadata, Viewport } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import s from './liv.module.css';
-import Faq from '../../components/Faq';
+import Faq, { type FaqItem } from '../../components/Faq';
 import ConsultForm from '../../components/ConsultForm';
+import MobileMenu from '../../components/MobileMenu';
 import { LIV, waLink } from '../../lib/site';
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'LivProtektact — Pelengkap Hidupmu',
   description: 'Live consciously, protect wisely, and grow together. Buat kamu yang siap sadar & cari panduan tanpa paksaan. #SaatnyaSadar',
 };
 
-const SERIES = [
+export const viewport: Viewport = { themeColor: '#ffffff' };
+
+const SERIES: readonly (readonly [string, string])[] = [
   ['#LivsReminder', 'Tiny wake up call'], ['#LivsTips', 'Tips aplikatif'],
   ['#LivsSpill', 'Honest talk dan info terbaru'], ['#LivServes', 'Pelayanan klaim'],
   ['#LearnWithLiv', 'Belajar bareng Liv'], ['#LivExposes', 'Bongkar mitos dan mindset yang salah'],
   ['#LivsStory', 'Cerita dan pengalaman'], ['#LivsReflect', 'Renungan dan pertanyaan reflektif'],
 ];
 
-const FAQS = [
+const FAQS: readonly FaqItem[] = [
   ['Aku harus langsung beli kalau ngobrol?', 'Gak sama sekali. Ngobrol dulu aja. Kalau ternyata kamu belum butuh, Liv akan bilang jujur.'],
   ['Kenapa disebut pelengkap hidup?', 'Karena proteksi bukan pusat hidupmu. Ia kepingan yang membuat rencana hidupmu lebih utuh saat hal tak terduga datang.'],
   ['Bisa ngobrol online?', 'Bisa, lewat WhatsApp atau video call, di waktu yang nyaman buat kamu.'],
   ['Gimana kalau nanti perlu klaim?', 'Liv menemanimu menyiapkan dokumen sampai pengajuan, sesuai ketentuan polis.'],
 ];
 
+const PROMISES = [
+  'Mengajak, bukan memaksa. Keputusan tetap di tanganmu.',
+  'Jujur soal manfaat dan batasan, tanpa janji berlebihan.',
+  'Menemani sampai klaim, bukan cuma sampai polis terbit.',
+];
+
 export default function LivProtektact() {
+  const wa = waLink(LIV.whatsapp, 'Halo Liv, aku mau ngobrol soal proteksi.');
+  const waExternal = Boolean(LIV.whatsapp);
+
   return (
-    <div className={s.page}>
+    <div className={`${s.page} has-mbar`}>
       <header className={s.header}>
         <div className={s.headerIn}>
-          <Link href="#top" aria-label="LivProtektact, ke atas">
-            <Image src="/livprotektact-logo.png" alt="LivProtektact" width={185} height={44} style={{ height: 44, width: 'auto' }} priority />
+          <Link href="#top" aria-label="LivProtektact, kembali ke atas">
+            <Image src="/livprotektact-logo.png" alt="LivProtektact" width={900} height={214} className={s.logo} priority />
           </Link>
-          <nav className={s.nav} aria-label="Utama">
+          <nav className={`${s.nav} dnav`} aria-label="Utama">
             <a href="#arti">Tentang Liv</a>
             <a href="#seri">Seri konten</a>
             <a href="#agen">Agenmu</a>
             <a href="#faq">FAQ</a>
             <Link href="/" className={s.back}>← PruCoverage</Link>
           </nav>
-          <a href="#ngobrol" className={s.btnSm}>Ngobrol yuk</a>
+          <a href="#ngobrol" className={`${s.btnSm} dcta`}>Ngobrol yuk</a>
+          <MobileMenu
+            links={[
+              { href: '#arti', label: 'Tentang Liv' },
+              { href: '#seri', label: 'Seri konten' },
+              { href: '#agen', label: 'Agenmu' },
+              { href: '#faq', label: 'FAQ' },
+              { href: '/', label: '← Kembali ke PruCoverage' },
+              { href: '#ngobrol', label: 'Ngobrol yuk', cta: true },
+            ]}
+          />
         </div>
       </header>
 
@@ -59,7 +82,7 @@ export default function LivProtektact() {
             <div className={s.hashtag}>#SaatnyaSadar</div>
           </div>
           <div className={s.heroArt}>
-            <svg viewBox="0 0 440 460" aria-hidden="true">
+            <svg viewBox="0 0 440 460" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
               <path d="M40 460V210a180 180 0 0 1 360 0v250z" fill="#EEE0F9" />
               <path d="M90 460V220a130 130 0 0 1 260 0v240" fill="none" stroke="#D8BFE3" strokeWidth="2" />
               <path d="M220 440c0-40-20-60-50-80M220 440c0-40 20-60 50-80M220 440v-60M200 400c-20-6-40 0-60 14M240 400c20-6 40 0 60 14" stroke="#CBAADA" strokeWidth="3" fill="none" strokeLinecap="round" />
@@ -78,7 +101,7 @@ export default function LivProtektact() {
             </div>
             <div className={s.grid3}>
               <div className={s.meaning}><h3>LIV</h3><div className={s.lavLabel}>Live consciously</div><p>Hidup dengan sadar: mengenali tubuh, perasaan, dan kebiasaan sendiri.</p></div>
-              <div className={s.meaning}><h3 style={{ fontStyle: 'italic', color: '#BE95D1' }}>PROTEK</h3><div className={s.lavLabel}>Protect wisely</div><p>Melindungi diri dengan bijak, berdasarkan informasi yang benar, bukan rasa takut.</p></div>
+              <div className={s.meaning}><h3 className={s.protek}>PROTEK</h3><div className={s.lavLabel}>Protect wisely</div><p>Melindungi diri dengan bijak, berdasarkan informasi yang benar, bukan rasa takut.</p></div>
               <div className={s.meaning}><h3>TACT</h3><div className={s.lavLabel}>Grow together</div><p>Tumbuh bersama Livians, pelan-pelan dan tanpa paksaan.</p></div>
             </div>
           </div>
@@ -87,22 +110,22 @@ export default function LivProtektact() {
         <section className={s.split}>
           <div className={s.splitText}>
             <h2 className={s.h2}>Proteksi itu kepingan, bukan segalanya.</h2>
-            <p style={{ maxWidth: '30em' }}>
+            <p>
               Hidup tetap berjalan dengan atau tanpa proteksi. Tapi dengan kepingan ini, hidup jadi <b>lebih utuh</b>.
               Seperti akar, perlindungan sering tak terlihat, padahal justru itu yang menjaga kehidupan tetap bertahan.
             </p>
           </div>
           <div className={s.triad}>
-            <div style={{ background: '#fff', color: '#5F6275' }}><b style={{ color: '#2A2D5A' }}>Lindungi</b>Bersiap sebelum risiko datang.</div>
-            <div style={{ background: '#EEE0F9', color: '#4C3C54' }}><b style={{ color: '#2A2D5A' }}>Lengkapi</b>Kepingan yang melengkapi hidup.</div>
-            <div style={{ background: '#2A2D5A', color: '#D4D5DE' }}><b style={{ color: '#fff' }}>Tumbuhkan</b>Lebih sehat, lebih sadar, tiap hari.</div>
+            <div className={s.t1}><b>Lindungi</b>Bersiap sebelum risiko datang.</div>
+            <div className={s.t2}><b>Lengkapi</b>Kepingan yang melengkapi hidup.</div>
+            <div className={s.t3}><b>Tumbuhkan</b>Lebih sehat, lebih sadar, tiap hari.</div>
           </div>
         </section>
 
         <section id="seri" className={s.white}>
           <div className={s.section}>
             <h2 className={s.h2}>Yang bisa kamu temukan bareng Liv</h2>
-            <p style={{ color: '#5F6275', marginTop: 10 }}>Setiap seri punya tagarnya sendiri, biar gampang kamu cari lagi.</p>
+            <p className={s.subtle}>Setiap seri punya tagarnya sendiri, biar gampang kamu cari lagi.</p>
             <div className={s.seriesGrid}>
               {SERIES.map(([tag, d]) => <div key={tag} className={s.series}><b>{tag}</b>{d}</div>)}
             </div>
@@ -112,13 +135,13 @@ export default function LivProtektact() {
         <section id="agen" className={s.agent}>
           <div className={s.photo}>Foto agen LivProtektact<br />(ganti dengan foto)</div>
           <div className={s.agentText}>
-            <div style={{ color: '#72597D', fontWeight: 600 }}>Kenalan dengan agenmu</div>
+            <div className={s.kicker}>Kenalan dengan agenmu</div>
             <h2 className={s.h2}>{LIV.agentName}</h2>
             <div style={{ fontWeight: 600 }}>Agen asuransi berlisensi · {LIV.license}</div>
             <p style={{ maxWidth: '34em' }}>[Cerita singkat kenapa kamu peduli soal proteksi. Mulai dari pengalaman sehari-hari, ditulis hangat dan jujur.]</p>
-            <div className={s.promise}><span className={s.tick} aria-hidden="true">✓</span>Mengajak, bukan memaksa. Keputusan tetap di tanganmu.</div>
-            <div className={s.promise}><span className={s.tick} aria-hidden="true">✓</span>Jujur soal manfaat dan batasan, tanpa janji berlebihan.</div>
-            <div className={s.promise}><span className={s.tick} aria-hidden="true">✓</span>Menemani sampai klaim, bukan cuma sampai polis terbit.</div>
+            {PROMISES.map((p) => (
+              <div key={p} className={s.promise}><span className={s.tick} aria-hidden="true">✓</span>{p}</div>
+            ))}
           </div>
         </section>
 
@@ -133,8 +156,8 @@ export default function LivProtektact() {
           <div className={s.contactText}>
             <h2 className={s.h2}>Yuk, cerita dulu. Gak harus langsung beli.</h2>
             <p>Ceritakan apa yang sedang kamu pikirkan soal dirimu dan keluargamu. Pesanmu akan terbuka di WhatsApp Liv, siap dikirim.</p>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 8, fontWeight: 500 }}>
-              {LIV.whatsapp ? <a href={waLink(LIV.whatsapp)} target="_blank" rel="noopener noreferrer">WhatsApp Liv</a> : <div>WhatsApp: [NOMOR WHATSAPP]</div>}
+            <div className={s.contactList}>
+              {waExternal ? <a href={wa} target="_blank" rel="noopener noreferrer">WhatsApp Liv</a> : <div>WhatsApp: [NOMOR WHATSAPP]</div>}
               <a href={LIV.instagram} target="_blank" rel="noopener noreferrer">Instagram: @livprotektact</a>
             </div>
           </div>
@@ -152,8 +175,8 @@ export default function LivProtektact() {
       <footer className={s.footer}>
         <div className={s.footerIn}>
           <div className={s.footerTop}>
-            <div className={s.wordmark}>LIV <span style={{ color: '#BE95D1', fontStyle: 'italic' }}>PROTEK</span> TACT</div>
-            <div className={s.hashtag} style={{ color: '#BE95D1', fontSize: 20 }}>#SaatnyaSadar</div>
+            <div className={s.wordmark}>LIV <span className={s.protek}>PROTEK</span> TACT</div>
+            <div className={s.hashtagLight}>#SaatnyaSadar</div>
           </div>
           <p className={s.small}>
             Akun pribadi agen, bukan akun resmi perusahaan. Bagian dari kolaborasi <Link href="/">PruCoverage</Link>. Manfaat dan
@@ -161,6 +184,11 @@ export default function LivProtektact() {
           </p>
         </div>
       </footer>
+
+      <div className="mbar">
+        <a href={LIV.instagram} className={s.barAlt} target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href={waExternal ? wa : '#ngobrol'} className={s.barMain} {...(waExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}>Ngobrol yuk</a>
+      </div>
     </div>
   );
 }

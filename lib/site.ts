@@ -1,0 +1,21 @@
+// Ubah data kontak di satu tempat ini.
+export const LIV = {
+  agentName: '[NAMA AGEN LIVPROTEKTACT]',
+  license: '[NO. LISENSI AAJI]',
+  whatsapp: '', // contoh: '6281234567890' (tanpa + dan spasi)
+  instagram: 'https://instagram.com/livprotektact',
+} as const;
+
+export const LIKO = {
+  license: '[NO. LISENSI AAJI]',
+  whatsapp: '62895611179149',
+  whatsappLabel: '0895-6111-79149',
+  instagram: 'https://instagram.com/liko.beready',
+} as const;
+
+export function waLink(number: string, text = ''): string {
+  if (!number) return '#ngobrol';
+  return `https://wa.me/${number}${text ? `?text=${encodeURIComponent(text)}` : ''}`;
+}
+
+export type Styles = Readonly<Record<string, string>>;

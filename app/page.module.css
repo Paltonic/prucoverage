@@ -1,34 +1,35 @@
-.page{font-family:var(--f-manrope),system-ui,sans-serif;color:#14282b;background:#f7f6f2;font-size:16px;line-height:1.65;min-height:100vh}
-.page a:focus-visible,.page button:focus-visible{outline:2px solid #b8573f;outline-offset:3px}
+.page{--menu-bg:#fff;--menu-ink:#14282b;--menu-line:#e6e2d9;--menu-hover:#f1efe9;--cta-bg:#14282b;--cta-ink:#f7f6f2;--bar-bg:rgba(247,246,242,.96);--header-h:64px;
+  font-family:var(--f-manrope),system-ui,sans-serif;color:#14282b;background:#f7f6f2;font-size:16px;line-height:1.65;min-height:100vh}
+.page a:focus-visible,.page button:focus-visible,.page summary:focus-visible{outline:2px solid #b8573f;outline-offset:3px}
 .serif{font-family:var(--f-fraunces),Georgia,serif;font-weight:400}
-.wrap{max-width:1200px;margin:0 auto;padding-inline:24px}
+.wrap{max-width:1200px;margin:0 auto;padding-inline:max(20px,env(safe-area-inset-left))}
 
-.header{border-bottom:1px solid #e6e2d9}
-.headerIn{composes:wrap;padding-block:18px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 32px}
+.header{position:sticky;top:0;z-index:40;background:rgba(247,246,242,.92);backdrop-filter:saturate(1.4) blur(12px);-webkit-backdrop-filter:saturate(1.4) blur(12px);border-bottom:1px solid #e6e2d9}
+.headerIn{composes:wrap;min-height:var(--header-h);display:flex;align-items:center;justify-content:space-between;gap:12px 32px}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#14282b;font-family:var(--f-fraunces),serif;font-size:22px}
 .nav{display:flex;flex-wrap:wrap;gap:4px 28px;font-size:15px;font-weight:500}
 .nav a{color:#14282b;text-decoration:none;padding:10px 0}
 .nav a:hover{color:#b8573f}
 
-.hero{composes:wrap;padding-block:clamp(48px,7vw,96px) clamp(32px,4vw,56px);display:flex;flex-direction:column;align-items:center;text-align:center;gap:22px}
+.hero{composes:wrap;padding-block:clamp(40px,7vw,96px) clamp(28px,4vw,56px);display:flex;flex-direction:column;align-items:center;text-align:center;gap:clamp(16px,2.4vw,22px)}
 .eyebrow{display:flex;align-items:center;gap:12px;font-size:14px;color:#5a6b6d;font-weight:500}
-.eyebrow span{width:32px;height:1px;background:#b8573f}
-.h1{composes:serif;font-size:clamp(40px,5.6vw,68px);line-height:1.04;max-width:15em}
-.lead{font-size:18px;max-width:36em;color:#4b5d60}
+.eyebrow span{width:28px;height:1px;background:#b8573f;flex:none}
+.h1{composes:serif;font-size:clamp(34px,5.6vw,68px);line-height:1.06;max-width:15em}
+.lead{font-size:clamp(16px,1.6vw,18px);max-width:36em;color:#4b5d60}
 
-.doors{composes:wrap;padding-bottom:clamp(56px,7vw,96px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:24px}
-.door{text-decoration:none;border-radius:32px;padding:clamp(28px,4vw,48px);display:flex;flex-direction:column;gap:22px;min-height:540px;position:relative;overflow:hidden;transition:transform .35s ease,box-shadow .35s ease}
+.doors{composes:wrap;padding-bottom:clamp(48px,7vw,96px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:clamp(16px,2vw,24px)}
+.door{text-decoration:none;border-radius:clamp(24px,3vw,32px);padding:clamp(24px,4vw,48px);display:flex;flex-direction:column;gap:clamp(16px,2vw,22px);min-height:540px;position:relative;overflow:hidden;transition:transform .35s ease,box-shadow .35s ease;isolation:isolate}
 .door:hover{transform:translateY(-6px);box-shadow:0 40px 70px -40px rgba(20,40,43,.55)}
-.door > *{position:relative}
-.door .deco{position:absolute}
+.door:active{transform:scale(.99)}
+.deco{position:absolute;z-index:-1;pointer-events:none}
 .doorLiv{background:#FDEDF5;color:#2A2D5A;font-family:var(--f-poppins),sans-serif}
 .doorLiko{background:#0F1827;color:#F3EEE6;font-family:var(--f-jakarta),sans-serif}
-.doorKicker{font-size:14px;font-weight:600}
+.doorKicker{font-size:14px;font-weight:600;margin-bottom:6px}
 .doorLiv .doorKicker{color:#72597D}
 .doorLiko .doorKicker{color:#3CC4B2}
-.doorTitleLiv{font-family:var(--f-fredoka),sans-serif;font-weight:600;font-size:clamp(32px,3.6vw,44px);line-height:1.1}
-.doorTitleLiko{font-family:var(--f-dmserif),serif;font-weight:400;font-size:clamp(32px,3.6vw,46px);line-height:1.08}
-.doorText{max-width:26em}
+.doorTitleLiv{font-family:var(--f-fredoka),sans-serif;font-weight:600;font-size:clamp(28px,3.6vw,44px);line-height:1.12}
+.doorTitleLiko{font-family:var(--f-dmserif),serif;font-weight:400;font-size:clamp(28px,3.6vw,46px);line-height:1.08}
+.doorText{max-width:26em;margin-top:10px}
 .doorLiko .doorText{color:#cfd6df}
 .tags{margin-top:auto;display:flex;flex-wrap:wrap;gap:8px;font-size:13px}
 .tags span{padding:6px 12px;border-radius:999px}
@@ -38,29 +39,43 @@
 .doorLiv .doorCta{background:#2A2D5A;color:#fff}
 .doorLiko .doorCta{background:#F2C14E;color:#0F1827}
 .likoBrand{display:flex;align-items:center;gap:12px;font-weight:600;font-size:20px}
+.livLogo{height:52px;width:auto}
 
-.choose{background:#fff;border-block:1px solid #ece8df;padding:clamp(56px,7vw,96px) 24px}
-.chooseIn{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:24px;align-items:center;text-align:center}
-.h2{composes:serif;font-size:clamp(30px,4vw,44px);line-height:1.1}
-.chooseGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:14px;width:100%}
-.choice{min-height:72px;padding:18px 22px;border-radius:18px;font-weight:500;font-size:17px;cursor:pointer;background:#fff;border:1px solid #d8d3c8;color:#14282b}
+.choose{background:#fff;border-block:1px solid #ece8df;padding:clamp(48px,7vw,96px) 20px}
+.chooseIn{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:clamp(16px,2.4vw,24px);align-items:center;text-align:center}
+.h2{composes:serif;font-size:clamp(28px,4vw,44px);line-height:1.12}
+.muted{color:#4b5d60;font-size:17px}
+.chooseGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:12px;width:100%}
+.choice{min-height:68px;padding:16px 20px;border-radius:18px;font-weight:500;font-size:17px;cursor:pointer;background:#fff;border:1px solid #d8d3c8;color:#14282b;transition:background .2s,border-color .2s}
 .choiceHati{background:#FDEDF5;border:2px solid #9877A7;color:#2A2D5A}
 .choicePikir{background:#D3ECE8;border:2px solid #1B6863;color:#0F1827}
+.resultWrap{width:100%}
 .result{display:flex;flex-direction:column;gap:14px;align-items:center;font-size:17px}
-.btnLiv,.btnLiko{text-decoration:none;padding:14px 26px;border-radius:999px;font-weight:600}
+.btnLiv,.btnLiko{text-decoration:none;padding:14px 26px;border-radius:999px;font-weight:600;min-height:50px;display:inline-flex;align-items:center}
 .btnLiv{background:#2A2D5A;color:#fff}
 .btnLiko{background:#0F1827;color:#F2C14E}
 
-.equation{composes:wrap;padding-block:clamp(56px,7vw,96px);display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:20px 40px;text-align:center}
+.equation{composes:wrap;padding-block:clamp(48px,7vw,96px);display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:16px 40px;text-align:center}
 .eqItem{flex:1 1 200px}
-.eqWord{composes:serif;font-size:36px;font-style:italic}
+.eqWord{composes:serif;font-size:clamp(30px,3vw,36px);font-style:italic}
 .eqSmall{font-size:14px;color:#5a6b6d}
-.eqOp{composes:serif;font-size:40px;color:#a8b3b2}
+.eqOp{composes:serif;font-size:40px;color:#a8b3b2;line-height:1}
 
-.footer{background:#14282b;color:#bccbc8;padding:40px 24px}
+.footer{background:#14282b;color:#bccbc8;padding:40px 20px calc(40px + env(safe-area-inset-bottom))}
 .footerIn{max-width:1200px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
 .footerTop{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;align-items:center}
+.footerLogo{composes:serif;font-size:24px;color:#f7f6f2}
 .footer a{color:#bccbc8}
+.footNav{display:flex;flex-wrap:wrap;gap:8px 24px;font-size:15px}
 .small{font-size:13px;color:#9fb0ad;max-width:70em}
 
-@media(prefers-reduced-motion:reduce){.door:hover{transform:none}}
+@media (max-width:600px){
+  .door{min-height:0}
+  .doorCta{align-self:stretch;text-align:center}
+  .livLogo{height:42px}
+  .deco{transform:scale(.7);transform-origin:bottom right}
+  .eqItem{flex-basis:100%}
+  .eqOp{font-size:30px}
+  .eyebrow{font-size:13px}
+}
+@media (prefers-reduced-motion:reduce){.door:hover{transform:none}}

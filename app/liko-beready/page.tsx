@@ -1,52 +1,74 @@
+import type { Metadata, Viewport } from 'next';
+import type { ReactNode } from 'react';
 import Link from 'next/link';
 import s from './liko.module.css';
 import LikoLogo from '../../components/LikoLogo';
 import Checklist from '../../components/Checklist';
+import MobileMenu from '../../components/MobileMenu';
 import { LIKO, waLink } from '../../lib/site';
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Liko.beready — Asuransi tanpa ribet untuk anak muda Medan',
   description: 'Edukasi proteksi simpel dan jujur untuk usia 25–35. Konsultasi gratis, tanpa kewajiban beli.',
 };
 
-const PAINS = [
+export const viewport: Viewport = { themeColor: '#0F1827' };
+
+const PAINS: readonly (readonly [string, string])[] = [
   ['Aku masih muda dan sehat, belum butuh.', 'Justru saat muda dan sehat, pengajuan biasanya lebih mudah. Risiko sakit dan kecelakaan nggak nunggu kita siap.'],
   ['Takut salah pilih, takut klaimnya dipersulit.', 'Klaim berjalan sesuai isi polis. Kuncinya paham ketentuannya dan jujur saat pengajuan. Itu yang aku bantu.'],
   ['Gaji pas-pasan, bingung mulai dari mana.', 'Urutannya penting: BPJS aktif, dana darurat, lalu proteksi yang iurannya sesuai kemampuan.'],
 ];
 
-const STEPS = [
+const STEPS: readonly (readonly [string, ReactNode])[] = [
   ['Kamu bayar iuran rutin', <>Namanya <b>premi</b>, alias iuran rutinnya.</>],
   ['Dana dikelola perusahaan', 'Perusahaan asuransi yang terdaftar dan diawasi OJK.'],
   ['Risiko terjadi, biaya dibantu', <>Sesuai isi perjanjian, alias <b>polis</b>.</>],
 ];
 
-const PROMISES = [
+const DICT: readonly (readonly [string, string])[] = [
+  ['Premi', 'iuran rutin'], ['Polis', 'surat perjanjian'], ['Klaim', 'pengajuan bantuan biaya'], ['Tertanggung', 'orang yang dilindungi'],
+];
+
+const PROMISES: readonly (readonly [string, string])[] = [
   ['Tanpa istilah ribet', 'Setiap istilah langsung aku jelaskan pakai bahasa sehari-hari.'],
   ['Tanpa paksaan', 'Kamu yang memutuskan, kapan pun kamu siap.'],
   ['Jujur kalau belum butuh', 'Kalau yang kamu perlukan sekarang dana darurat dulu, aku akan bilang begitu.'],
 ];
 
+const ext = { target: '_blank', rel: 'noopener noreferrer' } as const;
+
 export default function LikoBeready() {
   const wa = waLink(LIKO.whatsapp, 'Halo Liko, aku mau konsultasi soal proteksi.');
   return (
-    <div className={s.page}>
-      <div className={s.top}>
-        <svg className={s.arc} width="520" height="520" viewBox="0 0 520 520" aria-hidden="true">
-          <path d="M60 300a200 200 0 0 1 400 0" fill="none" stroke="#3CC4B2" strokeWidth="40" strokeLinecap="round" strokeOpacity=".9" />
-        </svg>
-        <header className={s.header}>
-          <Link href="#top" className={s.brand}><LikoLogo size={44} />liko.beready</Link>
-          <nav className={s.nav} aria-label="Utama">
+    <div className={`${s.page} has-mbar`}>
+      <header className={s.header}>
+        <div className={s.headerIn}>
+          <Link href="#top" className={s.brand}><LikoLogo size={40} label="" />liko.beready</Link>
+          <nav className={`${s.nav} dnav`} aria-label="Utama">
             <a href="#belajar">Asuransi 101</a>
             <a href="#checklist">Checklist</a>
             <a href="#janji">Janji Liko</a>
             <Link href="/" className={s.back}>← PruCoverage</Link>
           </nav>
-          <a href={wa} className={s.goldSm} target="_blank" rel="noopener noreferrer">Chat aku</a>
-        </header>
+          <a href={wa} className={`${s.goldSm} dcta`} {...ext}>Chat aku</a>
+          <MobileMenu
+            links={[
+              { href: '#belajar', label: 'Asuransi 101' },
+              { href: '#checklist', label: 'Checklist' },
+              { href: '#janji', label: 'Janji Liko' },
+              { href: '/', label: '← Kembali ke PruCoverage' },
+              { href: wa, label: 'Chat aku di WhatsApp', cta: true, external: true },
+            ]}
+          />
+        </div>
+      </header>
 
-        <section id="top" className={s.hero}>
+      <div className={s.top} id="top">
+        <svg className={s.arc} viewBox="0 0 520 520" aria-hidden="true">
+          <path d="M60 300a200 200 0 0 1 400 0" fill="none" stroke="#3CC4B2" strokeWidth="40" strokeLinecap="round" strokeOpacity=".9" />
+        </svg>
+        <section className={s.hero}>
           <div className={s.heroText}>
             <div className={s.tealLabel}>Edukasi proteksi untuk anak muda Medan</div>
             <h1 className={s.h1}>Asuransi itu kayak <span className={s.underline}>payung.</span></h1>
@@ -55,7 +77,7 @@ export default function LikoBeready() {
               kamu paham proteksi dengan simpel, jujur, dan tanpa dipaksa.
             </p>
             <div className={s.row}>
-              <a href={wa} className={s.gold} target="_blank" rel="noopener noreferrer">Konsultasi gratis via WhatsApp</a>
+              <a href={wa} className={s.gold} {...ext}>Konsultasi gratis via WhatsApp</a>
               <a href="#belajar" className={s.outline}>Belajar dulu</a>
             </div>
             <div className={s.note}>psst... ngobrol dulu aja, gratis kok</div>
@@ -84,7 +106,7 @@ export default function LikoBeready() {
               <div key={q} className={s.pain}>
                 <div className={s.quote}>“{q}”</div>
                 <div className={s.rule} />
-                <p className={s.muted}><b style={{ color: '#1B6863' }}>Kata Liko:</b> {a}</p>
+                <p className={s.muted}><b className={s.likoSays}>Kata Liko:</b> {a}</p>
               </div>
             ))}
           </div>
@@ -102,10 +124,7 @@ export default function LikoBeready() {
             <div className={s.dict}>
               <div className={s.dictHead}><h3>Kamus mini</h3><p>Simpan biar nggak lupa.</p></div>
               <div className={s.dictGrid}>
-                <div><b>Premi</b> = iuran rutin</div>
-                <div><b>Polis</b> = surat perjanjian</div>
-                <div><b>Klaim</b> = pengajuan bantuan biaya</div>
-                <div><b>Tertanggung</b> = orang yang dilindungi</div>
+                {DICT.map(([k, v]) => <div key={k}><b>{k}</b> = {v}</div>)}
               </div>
             </div>
           </div>
@@ -118,7 +137,7 @@ export default function LikoBeready() {
             <div className={s.intro}>
               <div className={s.avatar}>Foto atau<br />avatar Liko</div>
               <div className={s.introText}>
-                <div style={{ color: '#3CC4B2', fontWeight: 600 }}>Kenalan dulu</div>
+                <div className={s.tealKicker}>Kenalan dulu</div>
                 <h2 className={s.h2}>Aku Liko, agen asuransi dari Medan.</h2>
                 <p>
                   Aku pernah di digital marketing dan jadi pengajar, jadi aku terbiasa bikin hal ribet jadi simpel.
@@ -135,22 +154,22 @@ export default function LikoBeready() {
         </section>
 
         <section className={s.cta}>
-          <h2 className={s.ctaTitle}>Bingung mulai dari mana? <span style={{ color: '#1B6863', fontStyle: 'italic' }}>Ngobrol dulu aja.</span></h2>
+          <h2 className={s.ctaTitle}>Bingung mulai dari mana? <span className={s.ctaAccent}>Ngobrol dulu aja.</span></h2>
           <div className={s.flow}>
             <span>Chat aku</span><i aria-hidden="true">→</i>
             <span>Ceritakan kondisimu</span><i aria-hidden="true">→</i>
             <span>Kita petakan kebutuhanmu</span>
           </div>
           <div className={s.badge}>Gratis · Tanpa kewajiban beli</div>
-          <a href={wa} className={s.navyBtn} target="_blank" rel="noopener noreferrer">WhatsApp: {LIKO.whatsappLabel}</a>
+          <a href={wa} className={s.navyBtn} {...ext}>WhatsApp: {LIKO.whatsappLabel}</a>
         </section>
       </main>
 
       <footer className={s.footer}>
         <div className={s.footerIn}>
           <div className={s.footerTop}>
-            <div className={s.brand}><LikoLogo size={36} label="" />@liko.beready</div>
-            <a href={LIKO.instagram} target="_blank" rel="noopener noreferrer">Instagram</a>
+            <div className={s.footerBrand}><LikoLogo size={36} label="" />@liko.beready</div>
+            <a href={LIKO.instagram} {...ext}>Instagram</a>
           </div>
           <p className={s.small}>
             Akun pribadi agen, bukan akun resmi perusahaan. Bagian dari kolaborasi <Link href="/">PruCoverage</Link>. Setiap
@@ -158,6 +177,11 @@ export default function LikoBeready() {
           </p>
         </div>
       </footer>
+
+      <div className="mbar">
+        <a href="#checklist" className={s.barAlt}>Checklist</a>
+        <a href={wa} className={s.barMain} {...ext}>Chat aku</a>
+      </div>
     </div>
   );
 }

@@ -1,6 +1,6 @@
 {
   "name": "prucoverage",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -13,10 +13,11 @@
     "react-dom": "^19.1.0"
   },
   "devDependencies": {
-    "typescript": "5.8.2",
+    "@types/node": "^20.17.6",
     "@types/react": "^19.1.0",
-    "@types/node": "20.17.6",
+    "@types/react-dom": "^19.1.0",
     "eslint": "^9",
-    "eslint-config-next": "^15.5.0"
+    "eslint-config-next": "^15.5.0",
+    "typescript": "^5.8.2"
   }
 }

@@ -1,69 +1,120 @@
-import Image from "next/image";
+import Link from 'next/link';
+import Image from 'next/image';
+import s from './page.module.css';
+import Chooser from '../components/Chooser';
+import LikoLogo from '../components/LikoLogo';
+import MobileMenu from '../components/MobileMenu';
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <div className={s.page}>
+      <header className={s.header}>
+        <div className={s.headerIn}>
+          <Link href="/" className={s.brand}>
+            <svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true">
+              <path d="M16 2.5 5 7v8.2c0 7 4.7 12.6 11 14.3 6.3-1.7 11-7.3 11-14.3V7z" fill="none" stroke="#14282b" strokeWidth="1.6" />
+              <path d="M16 7v18c-4.2-1.4-7-5.3-7-9.8V10z" fill="#BE95D1" />
+              <path d="M16 7v18c4.2-1.4 7-5.3 7-9.8V10z" fill="#3CC4B2" />
+            </svg>
+            PruCoverage
+          </Link>
+          <nav className={`${s.nav} dnav`} aria-label="Utama">
+            <Link href="/livprotektact">LivProtektact</Link>
+            <Link href="/liko-beready">Liko.beready</Link>
+            <a href="#pilih">Bantu aku memilih</a>
+          </nav>
+          <MobileMenu
+            links={[
+              { href: '/livprotektact', label: 'LivProtektact · perasa' },
+              { href: '/liko-beready', label: 'Liko.beready · pemikir' },
+              { href: '#pilih', label: 'Bantu aku memilih', cta: true },
+            ]}
+          />
+        </div>
+      </header>
+
+      <main>
+        <section className={s.hero}>
+          <div className={s.eyebrow}><span />Kolaborasi LivProtektact × Liko.beready<span /></div>
+          <h1 className={s.h1}>Kamu memilih dengan <em>hati</em>, atau dengan <em>pikiran?</em></h1>
+          <p className={s.lead}>
+            Dua agen, dua cara bercerita, satu tujuan: kamu dan keluargamu terlindungi. Pilih pendamping yang paling
+            terasa cocok, lalu masuk ke ruangnya.
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+        </section>
+
+        <section className={s.doors} aria-label="Pilih pendamping">
+          <Link href="/livprotektact" className={`${s.door} ${s.doorLiv}`}>
+            <svg className={s.deco} style={{ right: -40, bottom: -40 }} width="260" height="260" viewBox="0 0 260 260" aria-hidden="true">
+              <path d="M30 260V130a100 100 0 0 1 200 0v130z" fill="#EEE0F9" />
+              <path d="M130 200c-30-10-46-40-40-80 34 6 52 34 40 80zM130 200c30-10 46-40 40-80-34 6-52 34-40 80z" fill="#BE95D1" />
+            </svg>
+            <Image src="/livprotektact-logo.png" alt="LivProtektact" width={900} height={214} className={s.livLogo} priority />
+            <div>
+              <div className={s.doorKicker}>Untukmu yang perasa</div>
+              <h2 className={s.doorTitleLiv}>Pelengkap hidupmu, <span style={{ color: '#9877A7' }}>tanpa paksaan.</span></h2>
+              <p className={s.doorText}>
+                Mulai dari perasaanmu: siapa yang ingin kamu jaga, mimpi apa yang ingin tetap tumbuh. Pelan-pelan, bareng
+                Livians lainnya.
+              </p>
+            </div>
+            <div className={s.tags}><span>Hangat</span><span>Reflektif</span><span>#SaatnyaSadar</span></div>
+            <span className={s.doorCta}>Masuk ke LivProtektact →</span>
+          </Link>
+
+          <Link href="/liko-beready" className={`${s.door} ${s.doorLiko}`}>
+            <svg className={s.deco} style={{ right: -90, top: -90 }} width="300" height="300" viewBox="0 0 300 300" aria-hidden="true">
+              <circle cx="150" cy="150" r="120" fill="none" stroke="#3CC4B2" strokeWidth="22" strokeOpacity=".35" />
+            </svg>
+            <div className={s.likoBrand}><LikoLogo size={48} label="" />liko.beready</div>
+            <div>
+              <div className={s.doorKicker}>Untukmu yang pemikir</div>
+              <h2 className={s.doorTitleLiko}>
+                Pengalih risiko, dijelaskan <span style={{ borderBottom: '3px solid #F2C14E' }}>tanpa ribet.</span>
+              </h2>
+              <p className={s.doorText}>
+                Mulai dari logika: risikonya apa, biayanya berapa, urutannya bagaimana. Dijelaskan seperti teman sebaya,
+                pakai analogi sehari-hari.
+              </p>
+            </div>
+            <div className={s.tags}><span>Logis</span><span>Edukatif</span><span>Medan</span></div>
+            <span className={s.doorCta}>Masuk ke Liko.beready →</span>
+          </Link>
+        </section>
+
+        <section id="pilih" className={s.choose}>
+          <div className={s.chooseIn}>
+            <h2 className={s.h2}>Masih ragu? Jawab satu pertanyaan ini.</h2>
+            <p className={s.muted}>Saat mendengar kata “asuransi”, apa yang pertama kali terlintas di kepalamu?</p>
+            <Chooser />
+          </div>
+        </section>
+
+        <section className={s.equation} aria-label="Hati ditambah pikiran sama dengan tenang">
+          <div className={s.eqItem}><div className={s.eqWord} style={{ color: '#72597D' }}>Hati</div><div className={s.eqSmall}>LivProtektact · untuk siapa kita melindungi</div></div>
+          <div className={s.eqOp} aria-hidden="true">+</div>
+          <div className={s.eqItem}><div className={s.eqWord} style={{ color: '#1B6863' }}>Pikiran</div><div className={s.eqSmall}>Liko.beready · bagaimana risikonya dihitung</div></div>
+          <div className={s.eqOp} aria-hidden="true">=</div>
+          <div className={s.eqItem}><div className={s.eqWord}>Tenang</div><div className={s.eqSmall}>PruCoverage · satu rencana yang utuh</div></div>
+        </section>
       </main>
+
+      <footer className={s.footer}>
+        <div className={s.footerIn}>
+          <div className={s.footerTop}>
+            <div className={s.footerLogo}>PruCoverage</div>
+            <nav className={s.footNav} aria-label="Footer">
+              <Link href="/livprotektact">LivProtektact</Link>
+              <Link href="/liko-beready">Liko.beready</Link>
+            </nav>
+          </div>
+          <p className={s.small}>
+            PruCoverage adalah kolaborasi dua akun pribadi agen berlisensi, bukan situs resmi perusahaan asuransi. Manfaat,
+            syarat, dan ketentuan setiap produk mengikuti polis yang diterbitkan perusahaan asuransi.
+          </p>
+          <div className={s.small}>© {new Date().getFullYear()} PruCoverage</div>
+        </div>
+      </footer>
     </div>
   );
 }
