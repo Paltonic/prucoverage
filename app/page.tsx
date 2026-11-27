@@ -1,8 +1,8 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import s from './page.module.css';
 import Chooser from '../components/Chooser';
-import LikoLogo from '../components/LikoLogo';
+import LikoWordmark from '../components/LikoWordmark';
+import LivLogo from '../components/LivLogo';
 import MobileMenu from '../components/MobileMenu';
 
 export default function Home() {
@@ -49,7 +49,7 @@ export default function Home() {
               <path d="M30 260V130a100 100 0 0 1 200 0v130z" fill="#EEE0F9" />
               <path d="M130 200c-30-10-46-40-40-80 34 6 52 34 40 80zM130 200c30-10 46-40 40-80-34 6-52 34-40 80z" fill="#BE95D1" />
             </svg>
-            <Image src="/livprotektact-logo.png" alt="LivProtektact" width={900} height={214} className={s.livLogo} priority />
+            <span className={s.livLogo}><LivLogo height={52} /></span>
             <div>
               <div className={s.doorKicker}>Untukmu yang perasa</div>
               <h2 className={s.doorTitleLiv}>Pelengkap hidupmu, <span style={{ color: '#9877A7' }}>tanpa paksaan.</span></h2>
@@ -66,7 +66,7 @@ export default function Home() {
             <svg className={s.deco} style={{ right: -90, top: -90 }} width="300" height="300" viewBox="0 0 300 300" aria-hidden="true">
               <circle cx="150" cy="150" r="120" fill="none" stroke="#3CC4B2" strokeWidth="22" strokeOpacity=".35" />
             </svg>
-            <div className={s.likoBrand}><LikoLogo size={48} label="" />liko.beready</div>
+            <span className={s.livLogo}><LikoWordmark height={52} /></span>
             <div>
               <div className={s.doorKicker}>Untukmu yang pemikir</div>
               <h2 className={s.doorTitleLiko}>
