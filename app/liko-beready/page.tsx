@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import type { ReactNode } from 'react';
 import Link from 'next/link';
 import s from './liko.module.css';
-import LikoLogo from '../../components/LikoLogo';
+import LikoWordmark from '../../components/LikoWordmark';
 import Checklist from '../../components/Checklist';
 import MobileMenu from '../../components/MobileMenu';
 import { LIKO, waLink } from '../../lib/site';
@@ -44,7 +44,7 @@ export default function LikoBeready() {
     <div className={`${s.page} has-mbar`}>
       <header className={s.header}>
         <div className={s.headerIn}>
-          <Link href="#top" className={s.brand}><LikoLogo size={40} label="" />liko.beready</Link>
+          <Link href="#top" className={s.brand}><LikoWordmark height={42} /></Link>
           <nav className={`${s.nav} dnav`} aria-label="Utama">
             <a href="#belajar">Asuransi 101</a>
             <a href="#checklist">Checklist</a>
@@ -139,9 +139,10 @@ export default function LikoBeready() {
               <div className={s.introText}>
                 <div className={s.tealKicker}>Kenalan dulu</div>
                 <h2 className={s.h2}>Aku Liko, agen asuransi dari Medan.</h2>
+                <div className={s.agentMeta}>{LIKO.agentName} · Agen asuransi berlisensi · {LIKO.license}</div>
                 <p>
                   Aku pernah di digital marketing dan jadi pengajar, jadi aku terbiasa bikin hal ribet jadi simpel.
-                  [SESUAIKAN: alasan aslimu jadi agen] · Lisensi: {LIKO.license}
+                  [SESUAIKAN: alasan aslimu jadi agen]
                 </p>
               </div>
             </div>
@@ -168,7 +169,7 @@ export default function LikoBeready() {
       <footer className={s.footer}>
         <div className={s.footerIn}>
           <div className={s.footerTop}>
-            <div className={s.footerBrand}><LikoLogo size={36} label="" />@liko.beready</div>
+            <LikoWordmark height={40} />
             <a href={LIKO.instagram} {...ext}>Instagram</a>
           </div>
           <p className={s.small}>
