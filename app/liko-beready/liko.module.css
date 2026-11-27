@@ -12,7 +12,7 @@
 
 .header{position:sticky;top:0;z-index:40;background:rgba(15,24,39,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid #1f2b40}
 .headerIn{composes:wrap;min-height:var(--header-h);display:flex;align-items:center;justify-content:space-between;gap:12px 32px}
-.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--cream);font-weight:700;font-size:18px}
+.brand{display:block;text-decoration:none}
 .nav{display:flex;flex-wrap:wrap;gap:4px 26px;font-size:15px;font-weight:500;flex:1 1 auto;justify-content:flex-end}
 .nav a{color:var(--cream);text-decoration:none;padding:10px 0}
 .nav a:hover{color:var(--teal)}
@@ -73,6 +73,7 @@
 .introText{flex:1 1 400px;display:flex;flex-direction:column;gap:8px}
 .introText p{color:#cfd6df;max-width:36em}
 .tealKicker{color:var(--teal);font-weight:600}
+.agentMeta{color:var(--gold);font-weight:600;font-size:15px}
 .promise{border:1px solid #2a3850;border-radius:22px;padding:clamp(22px,2.6vw,26px);display:flex;flex-direction:column;gap:8px}
 .promise h3{font-family:var(--f-dmserif),serif;font-weight:400;font-size:24px}
 .promise p{color:#cfd6df}
@@ -106,5 +107,6 @@
   .flow i{transform:rotate(90deg)}
   .navyBtn{width:100%;justify-content:center}
   .avatar{width:88px;height:88px}
+  .brand{transform:scale(.85);transform-origin:left center}
   .note{font-size:24px}
 }
